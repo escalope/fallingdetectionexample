@@ -125,7 +125,7 @@ public class RemoteAccelerometerParkinsonTest implements PHATInitAppListener {
 		//bulletAppState.setDebugEnabled(true);
 
 		worldAppState = new WorldAppState();
-		worldAppState.setLandType(WorldAppState.LandType.Basic);
+		worldAppState.setLandType(WorldAppState.LandType.Grass);
 		app.getStateManager().attach(worldAppState);
 		worldAppState.setCalendar(2013, 1, 1, 12, 0, 0);
 
@@ -219,6 +219,7 @@ public class RemoteAccelerometerParkinsonTest implements PHATInitAppListener {
 					bodiesAppState.runCommand(new FallDownCommand("Patient"));
 					fall = true;
 				} else if (fall && cont > timeToFall + 6) {
+					bodiesAppState.runCommand(new SetBodyInCoordenatesCommand("Patient", Vector3f.ZERO));
 					PHATCommand standUp = new StandUpCommand("Patient");
 					bodiesAppState.runCommand(standUp);
 					fall = false;
