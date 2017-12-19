@@ -125,7 +125,7 @@ public class RemoteAccelerometerParkinsonTest implements PHATInitAppListener {
 		//bulletAppState.setDebugEnabled(true);
 
 		worldAppState = new WorldAppState();
-		worldAppState.setLandType(WorldAppState.LandType.Grass);
+		worldAppState.setLandType(WorldAppState.LandType.Basic);
 		app.getStateManager().attach(worldAppState);
 		worldAppState.setCalendar(2013, 1, 1, 12, 0, 0);
 
@@ -180,8 +180,8 @@ public class RemoteAccelerometerParkinsonTest implements PHATInitAppListener {
 		
 		new Thread() {
 			public void run() {
-				launchRemoteXYChart(PHATServerManager.getAddress(),"Remote Chest Sensor g","sensor1");
-				launchRemoteXYChart(PHATServerManager.getAddress(),"Remote Left Hand g","sensor2");
+				launchRemoteXYChart(PHATServerManager.getAddress(),"Remote Chest Sensor","sensor1");
+				launchRemoteXYChart(PHATServerManager.getAddress(),"Remote Left Hand","sensor2");
 
 			}
 		}.start();
@@ -208,7 +208,7 @@ public class RemoteAccelerometerParkinsonTest implements PHATInitAppListener {
 				if (!init) {
 					AccelerometerControl ac = devicesAppState.getDevice("sensor1").getControl(AccelerometerControl.class);
 					ac.setMode(AccelerometerControl.AMode.GRAVITY_MODE);
-					XYShiftingAccelerationsChart chart = new XYShiftingAccelerationsChart("Chart - Acc.", "Local acceleration chest g", "m/s2", "x,y,z");
+					XYShiftingAccelerationsChart chart = new XYShiftingAccelerationsChart("Chart - Acc.", "Local acceleration chest", "m/s2", "x,y,z");
 					ac.add(chart);
 					chart.showWindow();
 					init = true;

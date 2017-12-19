@@ -93,7 +93,7 @@ public class RemoteClientWithPrearrangedLocalIPTest  {
 
 	public static void main(String[] args) {
 	
-		launchRemoteXYChart("Remote left hand g",PHATServerManager.getAddress(),"sensor2");
+		launchRemoteXYChart("Remote left hand",PHATServerManager.getAddress(),"sensor2");
 		
 	}
 
