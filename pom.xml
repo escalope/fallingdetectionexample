@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.phat</groupId>
+  <artifactId>sampleexternalclient</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.8-SNAPSHOT</version>
+  <name>PHAT - Physical Human Activity Tester</name>
+  <description>Physical Human Activity Tester</description>
+  <url>https://sourceforge.net/projects/phatsim/</url>
+  <licenses>
+    <license>
+      <name>The GPL V3</name>
+      <url>http://www.gnu.org/copyleft/gpl.html</url>
+      <distribution/>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:git:git://github.com/GRASIA/phatsim.git</connection>
+    <developerConnection>scm:git:git@github.com:GRASIA/phatsim.git</developerConnection>
+    <url>https://github.com/Grasia/phatsim</url>
+  </scm>
+  <developers>
+    <developer>
+      <id>escalope</id>
+      <name>Jorge Gomez-Sanz</name>
+      <email>jjgomez@fdi.ucm.es</email>
+    </developer>
+    <developer>
+      <id>pcampillo</id>
+      <name>Pablo Campillo-Sanchez</name>
+      <email>pabcampi@ucm.es</email>
+    </developer>
+  </developers>
+  <properties>
+    <vendor>GRASIA Research Group</vendor>
+    <developername>Pablo Campillo-Sanchez</developername>
+    <developeremail>pabcampi@ucm.es</developeremail>
+    <jme.version>3.0.1</jme.version>
+    <sociaal.version>1.0.11</sociaal.version>
+    <jali.version>1.0.9</jali.version>
+    <jdos.version>1.0.9</jdos.version>
+    <phat.version>1.0.9</phat.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>net.sf.phat</groupId>
+      <artifactId>phat-server</artifactId>
+      <version>${phat.version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <optimize>true</optimize>
+          <showDeprecations>true</showDeprecations>
+          <encoding>ISO-8859-1</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.2</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>1.7.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <finalName>${project.artifactId}-${project.version}-selfcontained</finalName>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>test.RemoteClientTest</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <versionRange>[1.0.0,)</versionRange>
+                    <goals>
+                      <goal>build-classpath</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore/>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <repositories>
+    <repository>
+      <id>java.net-m2</id>
+      <name>java.net - Maven 2</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/java.net-m2</url>
+    </repository>
+    <repository>
+      <id>sonatype-public</id>
+      <name>sonatype public</name>
+      <url>https://oss.sonatype.org/content/groups/public/</url>
+    </repository>
+  </repositories>
+</project>
+
