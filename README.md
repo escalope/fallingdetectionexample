@@ -1,11 +1,13 @@
 Demo of a dummy producing sensory input of an accelerometer in the chest and in the left hand.
 
-To run the demo:
+To run the demo
+
 	mvn clean compile
 	mvn exec:java -Dexec.mainClass=server.RemoteAccelerometerParkinsonTest
 
-To run an external listingin client (while running the demo):
-	mvn exec:java -Dexec.mainClass=server.RemoteClientTest
+To run an external listingin client (while running the demo)
+
+	mvn exec:java -Dexec.mainClass=clients.RemoteClientTest
 
 In case of running into memory problems
 
