@@ -42,20 +42,32 @@
     <developername>Pablo Campillo-Sanchez</developername>
     <developeremail>pabcampi@ucm.es</developeremail>
     <jme.version>3.0.1</jme.version>
-    <sociaal.version>1.0.11</sociaal.version>
-    <jali.version>1.0.9</jali.version>
-    <jdos.version>1.0.9</jdos.version>
-    <phat.version>1.0.9</phat.version>
+    <sociaal.version>1.0.12-SNAPSHOT</sociaal.version>
+    <jali.version>1.0.10-SNAPSHOT</jali.version>
+    <jdos.version>1.0.9-SNAPSHOT</jdos.version>
+    <phat.version>1.0.12-SNAPSHOT</phat.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>net.sf.phat</groupId>
-      <artifactId>phat-server</artifactId>
+      <artifactId>phat-api-server</artifactId>
+      <version>${phat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.phat</groupId>
+      <artifactId>phat-device-server</artifactId>
       <version>${phat.version}</version>
     </dependency>
   </dependencies>
   <build>
+
+
     <plugins>
+    <plugin>
+      <groupId>com.github.ferstl</groupId>
+      <artifactId>depgraph-maven-plugin</artifactId>
+      <version>3.0.1</version>
+    </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
